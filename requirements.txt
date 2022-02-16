@@ -10,3 +10,7 @@ click==8.0.3
 Jinja2==3.0.3
 certifi==2021.10.8
 colorama==0.4.4
+dominate==2.6.0
+idna==3.3
+itsdangerous==2.0.1
+visitor==0.1.3
