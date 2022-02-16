@@ -15,9 +15,6 @@ Bootstrap(app)
 
 app.secret_key = "thievesguild"
 
-image_path = "static/img/mountain.png"
-image_to_upload = f'src="{image_path}"'
-
 
 class FileForm(FlaskForm):
     photo = FileField(label="Select Image", validators=[FileRequired('File was empty!'),
@@ -33,6 +30,7 @@ def rgb_to_hex(rgb):
 def home():
 
     file_up_form = FileForm()
+    image_path = "static/img/mountain.png"
 
     if file_up_form.validate_on_submit():
         f = file_up_form.photo.data
@@ -41,6 +39,8 @@ def home():
         os.remove('static/img/mountain.png')
         copyfile('instance/img/mountain.png', 'static/img/mountain.png')
         return redirect(url_for('home'))
+
+    image_to_upload = f'/{image_path}'
 
     color_thief = ColorThief(image_path)
     color_palette = color_thief.get_palette(quality=1, color_count=9)
@@ -66,7 +66,7 @@ def home():
                            color5_hex=color5_hex, color6_hex=color6_hex, color7_hex=color7_hex,
                            color0_code=color0_code, color1_code=color1_code, color2_code=color2_code,
                            color3_code=color3_code, color4_code=color4_code, color5_code=color5_code,
-                           color6_code=color6_code, color7_code=color7_code)
+                           color6_code=color6_code, color7_code=color7_code, image=image_to_upload)
 
 
 if __name__ == '__main__':
