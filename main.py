@@ -12,7 +12,7 @@ from shutil import copyfile
 app = Flask(__name__)
 Bootstrap(app)
 
-app.secret_key = "imfucked"
+app.secret_key = "thievesguild"
 
 image_path = "static/img/mountain.png"
 image_to_upload = f'src="{image_path}"'
