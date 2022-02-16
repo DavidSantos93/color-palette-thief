@@ -10,6 +10,8 @@ from shutil import copyfile
 
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = "static/"
+
 Bootstrap(app)
 
 app.secret_key = "thievesguild"
