@@ -57,7 +57,7 @@ def home():
     color5_code = f"#{rgb_to_hex(color_palette[5]).upper()}"
     color6_code = f"#{rgb_to_hex(color_palette[6]).upper()}"
     color7_code = f"#{rgb_to_hex(color_palette[7]).upper()}"
-    return render_template('fsd.html', form=file_up_form, color0_hex=color0_hex, color1_hex=color1_hex,
+    return render_template('index.html', form=file_up_form, color0_hex=color0_hex, color1_hex=color1_hex,
                            color2_hex=color2_hex, color3_hex=color3_hex, color4_hex=color4_hex,
                            color5_hex=color5_hex, color6_hex=color6_hex, color7_hex=color7_hex,
                            color0_code=color0_code, color1_code=color1_code, color2_code=color2_code,
