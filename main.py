@@ -10,7 +10,6 @@ from shutil import copyfile
 
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = "static/"
 
 Bootstrap(app)
 
@@ -32,8 +31,7 @@ def rgb_to_hex(rgb):
 
 @app.route('/', methods=["GET", "POST"])
 def home():
-    color_thief = ColorThief(image_path)
-    color_palette = color_thief.get_palette(quality=1, color_count=9)
+
     file_up_form = FileForm()
 
     if file_up_form.validate_on_submit():
@@ -43,6 +41,10 @@ def home():
         os.remove('static/img/mountain.png')
         copyfile('instance/img/mountain.png', 'static/img/mountain.png')
         return redirect(url_for('home'))
+
+    color_thief = ColorThief(image_path)
+    color_palette = color_thief.get_palette(quality=1, color_count=9)
+
     color0_hex = f"style=background-color:#{rgb_to_hex(color_palette[0])}"
     color1_hex = f"style=background-color:#{rgb_to_hex(color_palette[1])}"
     color2_hex = f"style=background-color:#{rgb_to_hex(color_palette[2])}"
