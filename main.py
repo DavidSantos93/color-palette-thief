@@ -7,7 +7,7 @@ from wtforms import SubmitField
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from werkzeug.utils import secure_filename
 from shutil import copyfile
-
+import random
 
 app = Flask(__name__)
 
@@ -28,7 +28,7 @@ def rgb_to_hex(rgb):
 
 @app.route('/', methods=["GET", "POST"])
 def home():
-
+    no_cache = random.randint(5, 50000)
     file_up_form = FileForm()
     image_path = "static/img/mountain.png"
 
@@ -40,7 +40,7 @@ def home():
         copyfile('instance/img/mountain.png', 'static/img/mountain.png')
         return redirect(url_for('home'))
 
-    image_to_upload = f'/{image_path}'
+    image_to_upload = f'/{image_path}?{no_cache}'
 
     color_thief = ColorThief(image_path)
     color_palette = color_thief.get_palette(quality=1, color_count=9)
